@@ -1,0 +1,55 @@
+import pacientes.*
+import aparatos.*
+
+describe "parte 3" {
+	const magneto1 = new Magneto()
+	const bici1 = new Bicicleta()
+	const miniTramp = new MiniTramp()
+	const biciRoja = new Bicicleta(color = "rojo")
+	const magnetoVerde = new Magneto(color = "verde")
+	
+	const nicolas = new Resistente(edad=40, nivelDolor=10, masaMuscular=20, 
+						 rutina=[bici1,miniTramp,bici1,magneto1])
+	const victoria = new Caprichoso(edad=30, nivelDolor=10, masaMuscular=40,
+						 rutina=[bici1,miniTramp,bici1,magneto1])
+	const julian = new Caprichoso(edad=20, nivelDolor=54, masaMuscular=50,
+						 rutina=[biciRoja,magnetoVerde,bici1])
+	const zoe = new RapidaRecuperacion(edad=50, nivelDolor=14, masaMuscular=40,
+						 rutina=[bici1,miniTramp,bici1,magneto1])
+						 
+	test "Nicolas puede hacer la rutina" {
+		assert.that(nicolas.puedeHacerRutina())
+	}
+	
+	test "Nicolas hace la rutina" {
+		nicolas.hacerRutina()
+		assert.equals(1.8, nicolas.nivelDolor())
+		assert.equals(34, nicolas.masaMuscular())
+	}
+	
+	test "Victoria no puede hacer la rutina" {
+		assert.notThat(victoria.puedeHacerRutina())
+	}
+	
+	test "Julián puede hacer la rutina" {
+		assert.that(julian.puedeHacerRutina())
+	}
+	
+	test "Julián hace la rutina" {
+		julian.hacerRutina()
+		assert.equals(29.3, julian.nivelDolor())
+		assert.equals(62, julian.masaMuscular())
+	}
+
+	test "Zoe puede hacer la rutina" {
+		assert.that(zoe.puedeHacerRutina())
+	}
+	
+	test "Zoe hace la rutina" {
+		nivelDolorDisminuyeAdicional.valor(2)
+		zoe.hacerRutina()
+		assert.equals(3.4, zoe.nivelDolor())
+		assert.equals(51, zoe.masaMuscular())
+	}
+
+}
