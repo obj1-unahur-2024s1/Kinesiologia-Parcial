@@ -33,8 +33,7 @@ class Bicicleta inherits Aparato {
 	override method puedeUsarsePor(paciente) = paciente.edad() >=8
 	
 	override method usarse(paciente) {
-	
-			
+		self.efectoDelUso(paciente)
 		paciente.disminuirDolor(4)
 		paciente.aumentarMasaMuscular(3)
 	}
